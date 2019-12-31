@@ -42,13 +42,16 @@ AppAsset::register($this);
 //            ['label' => 'Home', 'url' => ['/site/index']],
 //            ['label' => 'About', 'url' => ['/site/about']],
 //            ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Приемка МТО', 'url' => ['/acceptanceofgoods/index']],
+            ['label' => 'Приемка МТО', 'url' => ['/acceptmaterial/index']],
             ['label' => 'Сотрудники', 'url' => ['/employee/index']],
-            ['label' => 'Инвентаризация', 'url' => ['/foodstorage/index']],
-            ['label' => 'Материалы', 'url' => ['/pruducts/index']],
+            ['label' => 'Инвентаризация', 'url' => ['/inventarisation/index']],
+            ['label' => 'Материалы', 'url' => ['/material/index']],
+            ['label' => 'Категории', 'url' => ['/materialcategory/index']],
+            ['label' => 'Места хранения', 'url' => ['/materialstorage/index']],
             ['label' => 'Склады', 'url' => ['/storehouse/index']],
             ['label' => 'Перевозчики', 'url' => ['/transporter/index']],
             ['label' => 'Поставщики', 'url' => ['/vendor/index']],
+
 
 //            Yii::$app->user->isGuest ? (
 //                ['label' => 'Login', 'url' => ['/site/login']]
