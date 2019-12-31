@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\VendorSearch */
+/* @var $searchModel app\models\InventarisationSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('message', 'Vendors');
+$this->title = Yii::t('message', 'Inventarisations');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="vendor-index">
+<div class="inventarisation-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('message', 'Create Vendor'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('message', 'Create Inventarisation'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,11 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idvendor',
-            'name',
-            'adress',
-            'phone',
-            'info',
+            'idinventarisation',
+            'date',
+            'material',
+            'count',
+            'units',
+            //'employee',
+            //'actnumber',
+            //'protocolnumber',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

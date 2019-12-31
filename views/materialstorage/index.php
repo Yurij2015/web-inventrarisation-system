@@ -4,18 +4,18 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\VendorSearch */
+/* @var $searchModel app\models\MaterialstorageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('message', 'Vendors');
+$this->title = Yii::t('message', 'Materialstorages');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="vendor-index">
+<div class="materialstorage-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('message', 'Create Vendor'), ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('message', 'Create Materialstorage'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
@@ -26,11 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'idvendor',
-            'name',
-            'adress',
-            'phone',
-            'info',
+            'idfoodstorage',
+            'racknumber',
+            'storehouse',
+            'material',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

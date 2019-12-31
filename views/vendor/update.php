@@ -5,12 +5,12 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Vendor */
 
-$this->title = Yii::t('lang', 'Update Vendor: {name}', [
+$this->title = Yii::t('message', 'Update Vendor: {name}', [
     'name' => $model->name,
 ]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('lang', 'Vendors'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('message', 'Vendors'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->name, 'url' => ['view', 'id' => $model->idvendor]];
-$this->params['breadcrumbs'][] = Yii::t('lang', 'Update');
+$this->params['breadcrumbs'][] = Yii::t('message', 'Update');
 ?>
 <div class="vendor-update">
 

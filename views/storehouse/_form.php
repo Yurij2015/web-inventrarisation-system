@@ -4,11 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model app\models\Vendor */
+/* @var $model app\models\Storehouse */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="vendor-form">
+<div class="storehouse-form">
 
     <?php $form = ActiveForm::begin(); ?>
 
@@ -16,9 +16,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'adress')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'info')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'employee_idemployee')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('message', 'Save'), ['class' => 'btn btn-success']) ?>
