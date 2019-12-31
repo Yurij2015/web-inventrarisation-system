@@ -1,0 +1,222 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS = @@UNIQUE_CHECKS, UNIQUE_CHECKS = 0;
+SET @OLD_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS = 0;
+SET @OLD_SQL_MODE = @@SQL_MODE, SQL_MODE = 'TRADITIONAL,ALLOW_INVALID_DATES';
+
+-- -----------------------------------------------------
+-- Schema inventarisation
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema inventarisation
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `inventarisation` DEFAULT CHARACTER SET utf8;
+USE `inventarisation`;
+
+-- -----------------------------------------------------
+-- Table `inventarisation`.`employee`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `inventarisation`.`employee`
+(
+    `idemployee` INT(11)      NOT NULL AUTO_INCREMENT,
+    `name`       VARCHAR(150) NULL DEFAULT NULL,
+    `phone`      VARCHAR(15)  NULL DEFAULT NULL,
+    PRIMARY KEY (`idemployee`)
+)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `inventarisation`.`materialcategory`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `inventarisation`.`materialcategory`
+(
+    `idmaterialcategory` INT          NOT NULL AUTO_INCREMENT,
+    `categoryname`       VARCHAR(45)  NULL,
+    `description`        VARCHAR(145) NULL,
+    PRIMARY KEY (`idmaterialcategory`)
+)
+    ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `inventarisation`.`material`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `inventarisation`.`material`
+(
+    `idmaterial`       INT          NOT NULL AUTO_INCREMENT,
+    `invnumber`        VARCHAR(20)  NULL,
+    `name`             VARCHAR(85)  NULL,
+    `description`      VARCHAR(255) NULL,
+    `materialcategory` INT          NOT NULL,
+    PRIMARY KEY (`idmaterial`),
+    INDEX `fk_material_materialcategory1_idx` (`materialcategory` ASC),
+    CONSTRAINT `fk_material_materialcategory1`
+        FOREIGN KEY (`materialcategory`)
+            REFERENCES `inventarisation`.`materialcategory` (`idmaterialcategory`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+)
+    ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `inventarisation`.`vendor`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `inventarisation`.`vendor`
+(
+    `idvendor` INT(11)      NOT NULL AUTO_INCREMENT,
+    `name`     VARCHAR(45)  NOT NULL,
+    `adress`   VARCHAR(100) NULL DEFAULT NULL,
+    `phone`    VARCHAR(15)  NULL DEFAULT NULL,
+    `info`     VARCHAR(250) NULL DEFAULT NULL,
+    PRIMARY KEY (`idvendor`)
+)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `inventarisation`.`transporter`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `inventarisation`.`transporter`
+(
+    `idtransporter` INT(11)      NOT NULL AUTO_INCREMENT,
+    `name`          VARCHAR(45)  NOT NULL,
+    `adress`        VARCHAR(150) NULL DEFAULT NULL,
+    `phone`         VARCHAR(15)  NOT NULL,
+    `info`          VARCHAR(250) NULL DEFAULT NULL,
+    PRIMARY KEY (`idtransporter`)
+)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `inventarisation`.`acceptmaterial`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `inventarisation`.`acceptmaterial`
+(
+    `idaccept`    INT(11)     NOT NULL AUTO_INCREMENT,
+    `date`        DATE        NULL DEFAULT NULL,
+    `employee`    INT(11)     NOT NULL,
+    `material`    INT         NOT NULL,
+    `vendor`      INT(11)     NOT NULL,
+    `transporter` INT(11)     NOT NULL,
+    `cost`        FLOAT       NULL,
+    `count`       FLOAT       NULL,
+    `units`       VARCHAR(15) NULL,
+    PRIMARY KEY (`idaccept`),
+    INDEX `fk_acceptanceofgoods_employee1_idx` (`employee` ASC),
+    INDEX `fk_acceptmaterial_material1_idx` (`material` ASC),
+    INDEX `fk_acceptmaterial_vendor1_idx` (`vendor` ASC),
+    INDEX `fk_acceptmaterial_transporter1_idx` (`transporter` ASC),
+    CONSTRAINT `fk_acceptanceofgoods_employee1`
+        FOREIGN KEY (`employee`)
+            REFERENCES `inventarisation`.`employee` (`idemployee`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT `fk_acceptmaterial_material1`
+        FOREIGN KEY (`material`)
+            REFERENCES `inventarisation`.`material` (`idmaterial`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT `fk_acceptmaterial_vendor1`
+        FOREIGN KEY (`vendor`)
+            REFERENCES `inventarisation`.`vendor` (`idvendor`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT `fk_acceptmaterial_transporter1`
+        FOREIGN KEY (`transporter`)
+            REFERENCES `inventarisation`.`transporter` (`idtransporter`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `inventarisation`.`storehouse`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `inventarisation`.`storehouse`
+(
+    `idstorehouse`        INT(11)      NOT NULL AUTO_INCREMENT,
+    `name`                VARCHAR(45)  NULL DEFAULT NULL,
+    `adress`              VARCHAR(150) NULL DEFAULT NULL,
+    `employee_idemployee` INT(11)      NOT NULL,
+    PRIMARY KEY (`idstorehouse`),
+    INDEX `fk_storehouse_employee1_idx` (`employee_idemployee` ASC),
+    CONSTRAINT `fk_storehouse_employee1`
+        FOREIGN KEY (`employee_idemployee`)
+            REFERENCES `inventarisation`.`employee` (`idemployee`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `inventarisation`.`materialstorage`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `inventarisation`.`materialstorage`
+(
+    `idfoodstorage` INT(11) NOT NULL AUTO_INCREMENT,
+    `racknumber`    INT(11) NULL DEFAULT NULL,
+    `storehouse`    INT(11) NOT NULL,
+    `material`      INT     NOT NULL,
+    PRIMARY KEY (`idfoodstorage`),
+    INDEX `fk_foodstorage_storehouse1_idx` (`storehouse` ASC),
+    INDEX `fk_materialstorage_material1_idx` (`material` ASC),
+    CONSTRAINT `fk_foodstorage_storehouse1`
+        FOREIGN KEY (`storehouse`)
+            REFERENCES `inventarisation`.`storehouse` (`idstorehouse`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT `fk_materialstorage_material1`
+        FOREIGN KEY (`material`)
+            REFERENCES `inventarisation`.`material` (`idmaterial`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `inventarisation`.`inventarisation`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `inventarisation`.`inventarisation`
+(
+    `idinventarisation` INT(11)     NOT NULL AUTO_INCREMENT,
+    `date`              DATE        NULL DEFAULT NULL,
+    `material`          INT         NOT NULL,
+    `count`             FLOAT       NULL,
+    `units`             VARCHAR(15) NULL,
+    `employee`          INT(11)     NOT NULL,
+    `actnumber`         VARCHAR(20) NULL,
+    `protocolnumber`    VARCHAR(20) NULL,
+    PRIMARY KEY (`idinventarisation`),
+    INDEX `fk_inventarisation_material1_idx` (`material` ASC),
+    INDEX `fk_inventarisation_employee1_idx` (`employee` ASC),
+    CONSTRAINT `fk_inventarisation_material1`
+        FOREIGN KEY (`material`)
+            REFERENCES `inventarisation`.`material` (`idmaterial`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    CONSTRAINT `fk_inventarisation_employee1`
+        FOREIGN KEY (`employee`)
+            REFERENCES `inventarisation`.`employee` (`idemployee`)
+            ON DELETE NO ACTION
+            ON UPDATE NO ACTION
+)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
+
+
+SET SQL_MODE = @OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS = @OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS = @OLD_UNIQUE_CHECKS;
