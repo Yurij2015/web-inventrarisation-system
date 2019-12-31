@@ -43,7 +43,7 @@ class Employee extends \yii\db\ActiveRecord
     {
         return [
             'idemployee' => Yii::t('message', 'Idemployee'),
-            'name' => Yii::t('message', 'Name'),
+            'name' => Yii::t('message', 'EmpName'),
             'phone' => Yii::t('message', 'Phone'),
         ];
     }
