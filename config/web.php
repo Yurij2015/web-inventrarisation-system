@@ -11,7 +11,7 @@ $config = [
 
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'components' => [
         'request' => [
@@ -51,7 +51,7 @@ $config = [
                     'basePath' => '@app/message',
                     'sourceLanguage' => 'en-US',
                     'fileMap' => [
-                        'app'       => 'lang.php',
+                        'app' => 'lang.php',
                         'app/error' => 'error.php',
                     ],
                 ],
@@ -83,7 +83,9 @@ if (YII_ENV_DEV) {
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
         // uncomment the following to add your IP if you are not connecting from localhost.
-        //'allowedIPs' => ['127.0.0.1', '::1'],
+//        'allowedIPs' => ['127.0.0.1', '::1'],
+        'allowedIPs' => ['*']
+
     ];
 }
 
