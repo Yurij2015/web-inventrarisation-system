@@ -15,22 +15,32 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'date')->textInput() ?>
 
-<!--    --><?//= $form->field($model, 'employee')->textInput() ?>
+    <?= $form->field($model, 'employee')->textInput() ?>
 
     <?= $form->field($model, 'employee')->dropDownList(ArrayHelper::map(\app\models\Employee::find()->all(), 'idemployee', 'name')) ?>
 
+    <?= $form->field($model, 'material')->dropDownList(ArrayHelper::map(\app\models\Material::find()->all(), 'idmaterial', 'invnumber')) ?>
 
-    <?= $form->field($model, 'material')->textInput() ?>
+    <?= $form->field($model, 'vendor')->dropDownList(ArrayHelper::map(\app\models\Vendor::find()->all(), 'idvendor', 'name')) ?>
 
-    <?= $form->field($model, 'vendor')->textInput() ?>
-
-    <?= $form->field($model, 'transporter')->textInput() ?>
+    <?= $form->field($model, 'transporter')->dropDownList(ArrayHelper::map(\app\models\Transporter::find()->all(), 'idtransporter', 'name')) ?>
 
     <?= $form->field($model, 'cost')->textInput() ?>
 
     <?= $form->field($model, 'count')->textInput() ?>
 
-    <?= $form->field($model, 'units')->textInput(['maxlength' => true]) ?>
+    <?php
+    $items = [
+        '0' => 'Литры',
+        '1' => 'Килограммы',
+        '2' => 'Тонны',
+        '3' => 'Граммы'
+    ];
+    $params = [
+        'prompt' => 'Выберите единицу измерения...'
+    ];
+    echo $form->field($model, 'units')->dropDownList($items, $params);
+    ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('message', 'Save'), ['class' => 'btn btn-success']) ?>
