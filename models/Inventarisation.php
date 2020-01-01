@@ -15,9 +15,6 @@ use Yii;
  * @property int $employee
  * @property string|null $actnumber
  * @property string|null $protocolnumber
- *
- * @property Employee $employee0
- * @property Material $material0
  * @property mixed materialG
  */
 class Inventarisation extends \yii\db\ActiveRecord

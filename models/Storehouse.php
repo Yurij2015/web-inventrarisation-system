@@ -46,7 +46,7 @@ class Storehouse extends \yii\db\ActiveRecord
     {
         return [
             'idstorehouse' => Yii::t('message', 'Idstorehouse'),
-            'name' => Yii::t('message', 'Name'),
+            'name' => Yii::t('message', 'StorehouseName'),
             'adress' => Yii::t('message', 'Adress'),
             'employee_idemployee' => Yii::t('message', 'Employee Idemployee'),
         ];

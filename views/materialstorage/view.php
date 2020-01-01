@@ -31,8 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
 //            'idfoodstorage',
             'racknumber',
-            'storehouse',
-            'material',
+            'storehouseG.name',
+            'materialG.name',
         ],
     ]) ?>
 

@@ -57,6 +57,8 @@ return [
     'Materials' => 'Материалы',
     'Materialstorages' => 'Места хранения материалов',
     'EmpName' => 'ФИО',
+    'MaterialName' => 'Наименование материала',
+    'StorehouseName' => 'Наименование склада',
     'Name' => 'Наименование',
     'Phone' => 'Номер телефона',
     'Protocolnumber' => 'Номер протокола',

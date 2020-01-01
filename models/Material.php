@@ -51,7 +51,7 @@ class Material extends \yii\db\ActiveRecord
         return [
             'idmaterial' => Yii::t('message', 'Idmaterial'),
             'invnumber' => Yii::t('message', 'Invnumber'),
-            'name' => Yii::t('message', 'Name'),
+            'name' => Yii::t('message', 'MaterialName'),
             'description' => Yii::t('message', 'Description'),
             'materialcategory' => Yii::t('message', 'Materialcategory'),
         ];
