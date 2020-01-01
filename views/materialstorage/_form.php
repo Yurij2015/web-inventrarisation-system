@@ -13,11 +13,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'racknumber')->textInput() ?>
+    <?= $form->field($model, 'material')->dropDownList(ArrayHelper::map(\app\models\Material::find()->all(), 'idmaterial', 'name')) ?>
 
     <?= $form->field($model, 'storehouse')->dropDownList(ArrayHelper::map(\app\models\Storehouse::find()->all(), 'idstorehouse', 'name')) ?>
 
-    <?= $form->field($model, 'material')->dropDownList(ArrayHelper::map(\app\models\Material::find()->all(), 'idmaterial', 'name')) ?>
+    <?= $form->field($model, 'racknumber')->textInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('message', 'Save'), ['class' => 'btn btn-success']) ?>

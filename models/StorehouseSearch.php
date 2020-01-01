@@ -17,8 +17,8 @@ class StorehouseSearch extends Storehouse
     public function rules()
     {
         return [
-            [['idstorehouse', 'employee_idemployee'], 'integer'],
-            [['name', 'adress'], 'safe'],
+            [['idstorehouse'], 'integer'],
+            [['name', 'adress', 'employee_idemployee'], 'safe'],
         ];
     }
 
@@ -42,11 +42,18 @@ class StorehouseSearch extends Storehouse
     {
         $query = Storehouse::find();
 
+        $query->joinWith(['employeeIdemployee']);
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['employee'] = [
+            'asc' => ['employee.name' => SORT_ASC],
+            'desc' => ['employee.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -59,12 +66,10 @@ class StorehouseSearch extends Storehouse
         // grid filtering conditions
         $query->andFilterWhere([
             'idstorehouse' => $this->idstorehouse,
-            'employee_idemployee' => $this->employee_idemployee,
         ]);
-
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'adress', $this->adress]);
-
+            ->andFilterWhere(['like', 'adress', $this->adress])
+            ->andFilterWhere(['like', 'employee.name', $this->employee_idemployee]);
         return $dataProvider;
     }
 }

@@ -54,7 +54,7 @@ class Materialstorage extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMaterial0()
+    public function getMaterialG()
     {
         return $this->hasOne(Material::className(), ['idmaterial' => 'material']);
     }
@@ -62,7 +62,7 @@ class Materialstorage extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStorehouse0()
+    public function getStorehouseG()
     {
         return $this->hasOne(Storehouse::className(), ['idstorehouse' => 'storehouse']);
     }

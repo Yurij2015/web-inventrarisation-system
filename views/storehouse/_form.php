@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -16,7 +17,8 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'adress')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'employee_idemployee')->textInput() ?>
+    <?= $form->field($model, 'employee_idemployee')->dropDownList(ArrayHelper::map(\app\models\Employee::find()->all(), 'idemployee', 'name')) ?>
+
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('message', 'Save'), ['class' => 'btn btn-success']) ?>

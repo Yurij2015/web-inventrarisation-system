@@ -73,9 +73,7 @@ class InventarisationSearch extends Inventarisation
         $query->andFilterWhere([
             'idinventarisation' => $this->idinventarisation,
             'date' => $this->date,
-//            'material' => $this->material,
             'count' => $this->count,
-//            'employee' => $this->employee,
         ]);
 
         $query->andFilterWhere(['like', 'units', $this->units])

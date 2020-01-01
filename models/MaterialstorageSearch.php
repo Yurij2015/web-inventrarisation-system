@@ -17,7 +17,9 @@ class MaterialstorageSearch extends Materialstorage
     public function rules()
     {
         return [
-            [['idfoodstorage', 'racknumber', 'storehouse', 'material'], 'integer'],
+            [['idfoodstorage', 'racknumber'], 'integer'],
+            [['storehouse', 'material'], 'safe'],
+
         ];
     }
 
@@ -41,11 +43,22 @@ class MaterialstorageSearch extends Materialstorage
     {
         $query = Materialstorage::find();
 
+        $query->joinWith(['storehouseG', 'materialG']);
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['material'] = [
+            'asc' => ['material.name' => SORT_ASC],
+            'desc' => ['material.name' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['storehouse'] = [
+            'asc' => ['storehouse.name' => SORT_ASC],
+            'desc' => ['storehouse.name' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -59,10 +72,12 @@ class MaterialstorageSearch extends Materialstorage
         $query->andFilterWhere([
             'idfoodstorage' => $this->idfoodstorage,
             'racknumber' => $this->racknumber,
-            'storehouse' => $this->storehouse,
-            'material' => $this->material,
+//            'storehouse' => $this->storehouse,
+//            'material' => $this->material,
         ]);
 
+        $query->andFilterWhere(['like', 'material.name', $this->material])
+            ->andFilterWhere(['like', 'storehouse.name', $this->storehouse]);
         return $dataProvider;
     }
 }
