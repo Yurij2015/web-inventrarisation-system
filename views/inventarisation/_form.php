@@ -1,5 +1,7 @@
 <?php
 
+use kartik\datetime\DateTimePicker;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -12,15 +14,33 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'date')->textInput() ?>
+    <?php
+    echo $form->field($model, 'date')->widget(DateTimePicker::classname(), [
+        'options' => ['placeholder' => 'Выберите дату ...'],
+        'pluginOptions' => [
+            'autoclose' => true
+        ]
+    ]);
+    ?>
 
-    <?= $form->field($model, 'material')->textInput() ?>
+    <?= $form->field($model, 'material')->dropDownList(ArrayHelper::map(\app\models\Material::find()->all(), 'idmaterial', 'invnumber')) ?>
 
     <?= $form->field($model, 'count')->textInput() ?>
 
-    <?= $form->field($model, 'units')->textInput(['maxlength' => true]) ?>
+    <?php
+    $items = [
+        '0' => 'Литры',
+        '1' => 'Килограммы',
+        '2' => 'Тонны',
+        '3' => 'Граммы'
+    ];
+    $params = [
+        'prompt' => 'Выберите единицу измерения...'
+    ];
+    echo $form->field($model, 'units')->dropDownList($items, $params);
+    ?>
 
-    <?= $form->field($model, 'employee')->textInput() ?>
+    <?= $form->field($model, 'employee')->dropDownList(ArrayHelper::map(\app\models\Employee::find()->all(), 'idemployee', 'name')) ?>
 
     <?= $form->field($model, 'actnumber')->textInput(['maxlength' => true]) ?>
 
