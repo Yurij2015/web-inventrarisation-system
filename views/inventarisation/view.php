@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Inventarisation */
 
-$this->title = $model->idinventarisation;
+$this->title = $model->materialG->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('message', 'Inventarisations'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);

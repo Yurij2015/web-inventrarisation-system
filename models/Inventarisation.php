@@ -18,6 +18,7 @@ use Yii;
  *
  * @property Employee $employee0
  * @property Material $material0
+ * @property mixed materialG
  */
 class Inventarisation extends \yii\db\ActiveRecord
 {
