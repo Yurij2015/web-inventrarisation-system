@@ -1,5 +1,10 @@
 <?php
 
+use app\models\Employee;
+use app\models\Material;
+use app\models\Transporter;
+use app\models\Vendor;
+use kartik\datetime\DateTimePicker;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -13,17 +18,22 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'date')->textInput() ?>
+    <?php
+    echo $form->field($model, 'date')->widget(DateTimePicker::classname(), [
+        'options' => ['placeholder' => 'Выберите дату ...'],
+        'pluginOptions' => [
+            'autoclose' => true
+        ]
+    ]);
+    ?>
 
-    <?= $form->field($model, 'employee')->textInput() ?>
+    <?= $form->field($model, 'employee')->dropDownList(ArrayHelper::map(Employee::find()->all(), 'idemployee', 'name')) ?>
 
-    <?= $form->field($model, 'employee')->dropDownList(ArrayHelper::map(\app\models\Employee::find()->all(), 'idemployee', 'name')) ?>
+    <?= $form->field($model, 'material')->dropDownList(ArrayHelper::map(Material::find()->all(), 'idmaterial', 'invnumber')) ?>
 
-    <?= $form->field($model, 'material')->dropDownList(ArrayHelper::map(\app\models\Material::find()->all(), 'idmaterial', 'invnumber')) ?>
+    <?= $form->field($model, 'vendor')->dropDownList(ArrayHelper::map(Vendor::find()->all(), 'idvendor', 'name')) ?>
 
-    <?= $form->field($model, 'vendor')->dropDownList(ArrayHelper::map(\app\models\Vendor::find()->all(), 'idvendor', 'name')) ?>
-
-    <?= $form->field($model, 'transporter')->dropDownList(ArrayHelper::map(\app\models\Transporter::find()->all(), 'idtransporter', 'name')) ?>
+    <?= $form->field($model, 'transporter')->dropDownList(ArrayHelper::map(Transporter::find()->all(), 'idtransporter', 'name')) ?>
 
     <?= $form->field($model, 'cost')->textInput() ?>
 

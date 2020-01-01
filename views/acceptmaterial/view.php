@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Acceptmaterial */
 
-$this->title = $model->idaccept;
+$this->title = $model->date;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('message', 'Acceptmaterials'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -31,10 +31,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
 //            'idaccept',
             'date',
-            'employee',
-            'material',
-            'vendor',
-            'transporter',
+            'materialG.name',
+            'employeeG.name',
+            'materialG.name',
+            'vendorG.name',
+            'transporterG.name',
             'cost',
             'count',
             'units',

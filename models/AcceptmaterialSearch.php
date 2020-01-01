@@ -17,8 +17,8 @@ class AcceptmaterialSearch extends Acceptmaterial
     public function rules()
     {
         return [
-            [['idaccept', 'employee', 'material', 'vendor', 'transporter'], 'integer'],
-            [['date', 'units'], 'safe'],
+            [['idaccept'], 'integer'],
+            [['date', 'units', 'employee', 'material', 'vendor', 'transporter'], 'safe'],
             [['cost', 'count'], 'number'],
         ];
     }
@@ -43,11 +43,35 @@ class AcceptmaterialSearch extends Acceptmaterial
     {
         $query = Acceptmaterial::find();
 
+        $query->joinWith(['employeeG', 'materialG', 'vendorG', 'transporterG']);
+
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['employee'] = [
+            'asc' => ['employee.name' => SORT_ASC],
+            'desc' => ['employee.name' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['material'] = [
+            'asc' => ['material.name' => SORT_ASC],
+            'desc' => ['material.name' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['vendor'] = [
+            'asc' => ['vendor.name' => SORT_ASC],
+            'desc' => ['vendor.name' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['transporter'] = [
+            'asc' => ['transporter.name' => SORT_ASC],
+            'desc' => ['transporter.name' => SORT_DESC],
+        ];
+
 
         $this->load($params);
 
@@ -61,15 +85,15 @@ class AcceptmaterialSearch extends Acceptmaterial
         $query->andFilterWhere([
             'idaccept' => $this->idaccept,
             'date' => $this->date,
-            'employee' => $this->employee,
-            'material' => $this->material,
-            'vendor' => $this->vendor,
-            'transporter' => $this->transporter,
             'cost' => $this->cost,
             'count' => $this->count,
         ]);
 
-        $query->andFilterWhere(['like', 'units', $this->units]);
+        $query->andFilterWhere(['like', 'units', $this->units])
+            ->andFilterWhere(['like', 'employee.name', $this->employee])
+            ->andFilterWhere(['like', 'material.name', $this->material])
+            ->andFilterWhere(['like', 'vendor.name', $this->vendor])
+            ->andFilterWhere(['like', 'transporter.name', $this->transporter]);
 
         return $dataProvider;
     }

@@ -3,6 +3,8 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveQuery;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "materialstorage".
@@ -11,11 +13,10 @@ use Yii;
  * @property int|null $racknumber
  * @property int $storehouse
  * @property int $material
- *
- * @property Material $material0
- * @property Storehouse $storehouse0
+ * @property ActiveQuery $storehouseG
+ * @property mixed materialG
  */
-class Materialstorage extends \yii\db\ActiveRecord
+class Materialstorage extends ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -52,7 +53,7 @@ class Materialstorage extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getMaterialG()
     {
@@ -60,7 +61,7 @@ class Materialstorage extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @return ActiveQuery
      */
     public function getStorehouseG()
     {

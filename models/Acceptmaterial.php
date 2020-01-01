@@ -17,10 +17,10 @@ use Yii;
  * @property float|null $count
  * @property string|null $units
  *
- * @property Employee $employee0
- * @property Material $material0
- * @property Transporter $transporter0
- * @property Vendor $vendor0
+ * @property Employee $employeeG
+ * @property Material $materialG
+ * @property Transporter $transporterG
+ * @property Vendor $vendorG
  */
 class Acceptmaterial extends \yii\db\ActiveRecord
 {
@@ -71,7 +71,7 @@ class Acceptmaterial extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEmployee0()
+    public function getEmployeeG()
     {
         return $this->hasOne(Employee::className(), ['idemployee' => 'employee']);
     }
@@ -79,7 +79,7 @@ class Acceptmaterial extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMaterial0()
+    public function getMaterialG()
     {
         return $this->hasOne(Material::className(), ['idmaterial' => 'material']);
     }
@@ -87,7 +87,7 @@ class Acceptmaterial extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getTransporter0()
+    public function getTransporterG()
     {
         return $this->hasOne(Transporter::className(), ['idtransporter' => 'transporter']);
     }
@@ -95,7 +95,7 @@ class Acceptmaterial extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getVendor0()
+    public function getVendorG()
     {
         return $this->hasOne(Vendor::className(), ['idvendor' => 'vendor']);
     }

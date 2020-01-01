@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Materialcategory */
 
-$this->title = $model->idmaterialcategory;
+$this->title = $model->categoryname;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('message', 'Materialcategories'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'idmaterialcategory',
+//            'idmaterialcategory',
             'categoryname',
             'description',
         ],

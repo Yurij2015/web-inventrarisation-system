@@ -28,10 +28,22 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'idaccept',
             'date',
-            'employee',
-            'material',
-            'vendor',
-            'transporter',
+            [
+                'attribute' => 'employee',
+                'value' => 'employeeG.name'
+            ],
+            [
+                'attribute' => 'material',
+                'value' => 'materialG.name'
+            ],
+            [
+                'attribute' => 'vendor',
+                'value' => 'vendorG.name'
+            ],
+            [
+                'attribute' => 'transporter',
+                'value' => 'transporterG.name'
+            ],
             'cost',
             'count',
             'units',

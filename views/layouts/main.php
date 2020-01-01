@@ -47,7 +47,7 @@ AppAsset::register($this);
             ['label' => 'Инвентаризация', 'url' => ['/inventarisation/index']],
             ['label' => 'Материалы', 'url' => ['/material/index']],
             ['label' => 'Категории', 'url' => ['/materialcategory/index']],
-            ['label' => 'Места хранения', 'url' => ['/materialstorage/index']],
+            ['label' => 'Хранение', 'url' => ['/materialstorage/index']],
             ['label' => 'Склады', 'url' => ['/storehouse/index']],
             ['label' => 'Перевозчики', 'url' => ['/transporter/index']],
             ['label' => 'Поставщики', 'url' => ['/vendor/index']],
@@ -80,14 +80,14 @@ AppAsset::register($this);
 </div>
 
 <footer class="footer">
-    <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+</body>
+<div class="container">
+    <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
 
-        <p class="pull-right"><?= Yii::powered() ?></p>
-    </div>
+    <p class="pull-right"><?= Yii::powered() ?></p>
+</div>
 </footer>
 
 <?php $this->endBody() ?>
-</body>
 </html>
 <?php $this->endPage() ?>
