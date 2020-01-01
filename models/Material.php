@@ -76,7 +76,7 @@ class Material extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMaterialcategory0()
+    public function getMaterialcategoryG()
     {
         return $this->hasOne(Materialcategory::className(), ['idmaterialcategory' => 'materialcategory']);
     }

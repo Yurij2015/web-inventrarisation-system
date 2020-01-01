@@ -17,8 +17,8 @@ class MaterialSearch extends Material
     public function rules()
     {
         return [
-            [['idmaterial', 'materialcategory'], 'integer'],
-            [['invnumber', 'name', 'description'], 'safe'],
+            [['idmaterial'], 'integer'],
+            [['invnumber', 'name', 'description', 'materialcategory'], 'safe'],
         ];
     }
 
@@ -42,11 +42,18 @@ class MaterialSearch extends Material
     {
         $query = Material::find();
 
+        $query->joinWith(['materialcategoryG']);
+
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
+
+        $dataProvider->sort->attributes['materialcategory'] = [
+            'asc' => ['materialcategory.categoryname' => SORT_ASC],
+            'desc' => ['materialcategory.categoryname' => SORT_DESC],
+        ];
 
         $this->load($params);
 
@@ -59,12 +66,13 @@ class MaterialSearch extends Material
         // grid filtering conditions
         $query->andFilterWhere([
             'idmaterial' => $this->idmaterial,
-            'materialcategory' => $this->materialcategory,
+//            'materialcategory' => $this->materialcategory,
         ]);
 
         $query->andFilterWhere(['like', 'invnumber', $this->invnumber])
             ->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'description', $this->description]);
+            ->andFilterWhere(['like', 'description', $this->description])
+            ->andFilterWhere(['like', 'materialcategory.categoryname', $this->materialcategory]);;
 
         return $dataProvider;
     }

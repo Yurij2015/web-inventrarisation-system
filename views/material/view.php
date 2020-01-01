@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'invnumber',
             'name',
             'description',
-            'materialcategory',
+            'materialcategoryG.categoryname',
         ],
     ]) ?>
 

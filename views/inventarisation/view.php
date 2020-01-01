@@ -31,10 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
 //            'idinventarisation',
             'date',
-            'material',
+            'materialG.name',
             'count',
             'units',
-            'employee',
+            'employeeG.name',
             'actnumber',
             'protocolnumber',
         ],

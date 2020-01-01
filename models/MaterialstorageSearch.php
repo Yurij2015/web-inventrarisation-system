@@ -71,9 +71,7 @@ class MaterialstorageSearch extends Materialstorage
         // grid filtering conditions
         $query->andFilterWhere([
             'idfoodstorage' => $this->idfoodstorage,
-            'racknumber' => $this->racknumber,
-//            'storehouse' => $this->storehouse,
-//            'material' => $this->material,
+            'racknumber' => $this->racknumber
         ]);
 
         $query->andFilterWhere(['like', 'material.name', $this->material])

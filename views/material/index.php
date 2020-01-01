@@ -30,7 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
             'invnumber',
             'name',
             'description',
-            'materialcategory',
+//            'materialcategory',
+
+            [
+                'attribute' => 'materialcategory',
+                'value' => 'materialcategoryG.categoryname'
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
