@@ -28,10 +28,16 @@ $this->params['breadcrumbs'][] = $this->title;
 
 //            'idinventarisation',
             'date',
-            'material',
+//            'material',
+
+            [
+                'attribute' => 'material',
+                'value' => 'materialG.name'
+            ],
+
             'count',
             'units',
-            'employee',
+            'employeeG.name',
             'actnumber',
             'protocolnumber',
 

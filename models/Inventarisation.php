@@ -66,7 +66,7 @@ class Inventarisation extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEmployee0()
+    public function getEmployeeG()
     {
         return $this->hasOne(Employee::className(), ['idemployee' => 'employee']);
     }
@@ -74,7 +74,7 @@ class Inventarisation extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMaterial0()
+    public function getMaterialG()
     {
         return $this->hasOne(Material::className(), ['idmaterial' => 'material']);
     }
