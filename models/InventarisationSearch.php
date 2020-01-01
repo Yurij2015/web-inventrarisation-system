@@ -17,8 +17,8 @@ class InventarisationSearch extends Inventarisation
     public function rules()
     {
         return [
-            [['idinventarisation', 'employee'], 'integer'],
-            [['date', 'units', 'actnumber', 'protocolnumber', 'material'], 'safe'],
+            [['idinventarisation'], 'integer'],
+            [['date', 'units', 'actnumber', 'protocolnumber', 'material', 'employee'], 'safe'],
             [['count'], 'number'],
         ];
     }
@@ -43,7 +43,7 @@ class InventarisationSearch extends Inventarisation
     {
         $query = Inventarisation::find();
 
-        $query->joinWith(['materialG']);
+        $query->joinWith(['materialG', 'employeeG']);
 
         // add conditions that should always apply here
 
@@ -54,6 +54,11 @@ class InventarisationSearch extends Inventarisation
         $dataProvider->sort->attributes['material'] = [
             'asc' => ['material.name' => SORT_ASC],
             'desc' => ['material.name' => SORT_DESC],
+        ];
+
+        $dataProvider->sort->attributes['employee'] = [
+            'asc' => ['employee.name' => SORT_ASC],
+            'desc' => ['employee.name' => SORT_DESC],
         ];
 
         $this->load($params);
@@ -70,13 +75,14 @@ class InventarisationSearch extends Inventarisation
             'date' => $this->date,
 //            'material' => $this->material,
             'count' => $this->count,
-            'employee' => $this->employee,
+//            'employee' => $this->employee,
         ]);
 
         $query->andFilterWhere(['like', 'units', $this->units])
             ->andFilterWhere(['like', 'actnumber', $this->actnumber])
             ->andFilterWhere(['like', 'protocolnumber', $this->protocolnumber])
-            ->andFilterWhere(['like', 'material.name', $this->material]);
+            ->andFilterWhere(['like', 'material.name', $this->material])
+            ->andFilterWhere(['like', 'employee.name', $this->employee]);
 
         return $dataProvider;
     }

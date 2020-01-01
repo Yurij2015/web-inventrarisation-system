@@ -1,5 +1,6 @@
 <?php
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -14,9 +15,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'racknumber')->textInput() ?>
 
-    <?= $form->field($model, 'storehouse')->textInput() ?>
+    <?= $form->field($model, 'storehouse')->dropDownList(ArrayHelper::map(\app\models\Storehouse::find()->all(), 'idstorehouse', 'name')) ?>
 
-    <?= $form->field($model, 'material')->textInput() ?>
+    <?= $form->field($model, 'material')->dropDownList(ArrayHelper::map(\app\models\Material::find()->all(), 'idmaterial', 'name')) ?>
 
     <div class="form-group">
         <?= Html::submitButton(Yii::t('message', 'Save'), ['class' => 'btn btn-success']) ?>

@@ -25,22 +25,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-//            'idinventarisation',
             'date',
-//            'material',
-
             [
                 'attribute' => 'material',
                 'value' => 'materialG.name'
             ],
-
+            [
+                'attribute' => 'employee',
+                'value' => 'employeeG.name'
+            ],
             'count',
             'units',
-            'employeeG.name',
             'actnumber',
             'protocolnumber',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
