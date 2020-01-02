@@ -21,7 +21,7 @@ AppAsset::register($this);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
-    <title><?= "TorgCompany" ?></title>
+    <title><?= "Система инвентаризации" ?></title>
     <?php $this->head() ?>
 </head>
 <body>
@@ -30,7 +30,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => "TorgCompany",
+        'brandLabel' => "WIS",
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -39,10 +39,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-//            ['label' => 'Home', 'url' => ['/site/index']],
-//            ['label' => 'About', 'url' => ['/site/about']],
-//            ['label' => 'Contact', 'url' => ['/site/contact']],
-            ['label' => 'Приемка МТО', 'url' => ['/acceptmaterial/index']],
+            ['label' => 'Приемка', 'url' => ['/acceptmaterial/index']],
             ['label' => 'Сотрудники', 'url' => ['/employee/index']],
             ['label' => 'Инвентаризация', 'url' => ['/inventarisation/index']],
             ['label' => 'Материалы', 'url' => ['/material/index']],
@@ -54,7 +51,7 @@ AppAsset::register($this);
 
 
             Yii::$app->user->isGuest ? (
-                ['label' => 'Войти', 'url' => ['/site/login']]
+            ['label' => 'Войти', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
@@ -82,9 +79,9 @@ AppAsset::register($this);
 <footer class="footer">
 </body>
 <div class="container">
-    <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+    <p class="pull-left">&copy; Система инвентаризации <?= date('Y') ?></p>
 
-    <p class="pull-right"><?= Yii::powered() ?></p>
+    <p class="pull-right">WIS</p>
 </div>
 </footer>
 
