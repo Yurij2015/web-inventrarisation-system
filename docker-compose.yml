@@ -28,4 +28,3 @@ services:
       - 9999:80
     links:
       - mysql:db
-
