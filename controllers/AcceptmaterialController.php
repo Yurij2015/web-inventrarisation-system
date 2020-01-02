@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Acceptmaterial;
 use app\models\AcceptmaterialSearch;
+use yii\db\StaleObjectException;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -112,6 +113,8 @@ class AcceptmaterialController extends Controller
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
+     * @throws \Throwable
+     * @throws StaleObjectException
      */
     public function actionDelete($id)
     {

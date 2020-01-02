@@ -18,17 +18,12 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('message', 'Create Materialstorage'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-//            'idfoodstorage',
             'racknumber',
-//            'storehouse',
-//            'material',
             [
                 'attribute' => 'material',
                 'value' => 'materialG.name'

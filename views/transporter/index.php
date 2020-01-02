@@ -18,20 +18,15 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('message', 'Create Transporter'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
-//            'idtransporter',
             'name',
             'adress',
             'phone',
             'info',
-
             ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>

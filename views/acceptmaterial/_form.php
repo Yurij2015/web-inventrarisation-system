@@ -13,11 +13,8 @@ use yii\widgets\ActiveForm;
 /* @var $model app\models\Acceptmaterial */
 /* @var $form yii\widgets\ActiveForm */
 ?>
-
 <div class="acceptmaterial-form">
-
     <?php $form = ActiveForm::begin(); ?>
-
     <?php
     echo $form->field($model, 'date')->widget(DateTimePicker::classname(), [
         'options' => ['placeholder' => 'Выберите дату ...'],
@@ -26,19 +23,12 @@ use yii\widgets\ActiveForm;
         ]
     ]);
     ?>
-
     <?= $form->field($model, 'employee')->dropDownList(ArrayHelper::map(Employee::find()->all(), 'idemployee', 'name')) ?>
-
     <?= $form->field($model, 'material')->dropDownList(ArrayHelper::map(Material::find()->all(), 'idmaterial', 'invnumber')) ?>
-
     <?= $form->field($model, 'vendor')->dropDownList(ArrayHelper::map(Vendor::find()->all(), 'idvendor', 'name')) ?>
-
     <?= $form->field($model, 'transporter')->dropDownList(ArrayHelper::map(Transporter::find()->all(), 'idtransporter', 'name')) ?>
-
     <?= $form->field($model, 'cost')->textInput() ?>
-
     <?= $form->field($model, 'count')->textInput() ?>
-
     <?php
     $items = [
         'Литры' => 'Литры',
@@ -51,11 +41,8 @@ use yii\widgets\ActiveForm;
     ];
     echo $form->field($model, 'units')->dropDownList($items, $params);
     ?>
-
     <div class="form-group">
         <?= Html::submitButton(Yii::t('message', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
-
     <?php ActiveForm::end(); ?>
-
 </div>
